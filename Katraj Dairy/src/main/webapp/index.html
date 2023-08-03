@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <script>
+            function hind_all()
+            {
+                document.getElementById("r1").style.display="none";
+                document.getElementById("r2").style.display="none";
+                document.getElementById("r3").style.display="none";
+            }
+
+            function show()
+            {
+                document.getElementById("r1").style.display="";
+                document.getElementById("r2").style.display="";
+                document.getElementById("r3").style.display="";
+            }
+
+            function rate_fun()
+            {
+                var toc=document.f1.toc.value;
+                var tom=document.f1.tom.value;
+
+                if(toc=="Distributor")
+                {
+                    if(tom=="Cow")
+                    {
+                        document.f1.rate.value=40;
+                    }
+                    else
+                    {
+                        document.f1.rate.value=50;
+                    }
+                }
+                else
+                {
+                    if(tom=="Cow")
+                    {
+                        document.f1.rate.value=50;
+                    }
+                    else
+                    {
+                        document.f1.rate.value=60;
+                    }
+                }
+
+            }
+
+            function bill_fun()
+            {
+                var qty=document.f1.qty.value;
+                var bill= qty * document.f1.rate.value;
+                document.f1.bill.value=bill;
+
+                var gst=bill*0.18;
+                document.f1.gst.value=gst;
+                document.f1.fbill.value=bill+gst;
+            }
+            
+               
+           
+        </script>
+    </head>
+    <body onload="hind_all()">
+        <form action="dairy.jsp" name="f1">
+            <center>
+                <table cellpadding="5" border="1">
+                    <tr>
+                        <th colspan="2" bgcolor="gold">Katraj Dairy</th>
+                    </tr>
+
+                    <tr>
+                        <td>Customer Name</td>
+                        <td><input type="text" name="cname"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Type of Customer</td>
+                        <td>
+                            <input type="radio" name="toc" value="Distributor" onclick="show()">Distributor
+                            <input type="radio" name="toc" value="Retailer" onclick="hind_all()">Retailer
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Select Milk</td>
+                        <td>
+                            <input type="radio" name="tom" value="Cow" onclick="rate_fun()">Cow
+                            <input type="radio" name="tom" value="Baffalo" onclick="rate_fun()">Baffalo
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Rate</td>
+                        <td><input type="text" name="rate" readonly></td>
+                    </tr>
+
+                    <tr>
+                        <td>Quantity</td>
+                        <td><input type="text" name="qty" onkeyup="bill_fun()"></td>
+                    </tr>
+
+                    <tr>
+                        <td>Bill</td>
+                        <td><input type="text" name="bill" readonly></td>
+                    </tr>
+
+                    <tr id="r1">
+                        <td>GST</td>
+                        <td><input type="text" name="gst1" value="18%" readonly></td>
+                    </tr>
+
+                    <tr id="r2">
+                        <td>GST</td>
+                        <td><input type="text" name="gst" readonly></td>
+                    </tr>
+
+                    <tr id="r3">
+                        <td>Final Bill</td>
+                        <td><input type="text" name="fbill" readonly></td>
+                    </tr>
+                     
+                     <tr>
+                     	<th colspan=2>
+                     		<input type="submit" value=Submit>
+                     		<input type="reset" value="Reset">
+                     	</th>
+                     </tr>
+                </table>
+            </center>   
+        </form>
+    </body>
+</html>
